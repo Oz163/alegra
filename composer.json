@@ -1,0 +1,12 @@
+{
+    "name": "oscarsaavedra/alegra",
+    "description": "Requerimiento del equipo de Alegra realizado por Oscar Saavedra (oscar.saavedra163@gmail.com)",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Oscar de J. Saavedra",
+            "email": "oscar.saavedra163@gmail.com"
+        }
+    ],
+    "require": {}
+}
