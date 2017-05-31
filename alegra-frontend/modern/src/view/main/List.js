@@ -6,19 +6,19 @@ Ext.define('Alegra.frontend.view.main.List', {
     xtype: 'mainlist',
 
     requires: [
-        'Alegra.frontend.store.Personnel'
+        'Alegra.frontend.store.Contactos'
     ],
 
-    title: 'Personnel',
+    title: 'Contactos',
 
     store: {
-        type: 'personnel'
+        type: 'contactos'
     },
 
     columns: [
         { text: 'Name',  dataIndex: 'name', width: 100 },
         { text: 'Email', dataIndex: 'email', width: 230 },
-        { text: 'Phone', dataIndex: 'phone', width: 150 }
+        { text: 'Phone', dataIndex: 'phonePrimary', width: 150 }
     ],
 
     listeners: {
