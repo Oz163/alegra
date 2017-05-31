@@ -11,8 +11,8 @@ class ClienteController extends Zend_Controller_Action
       public function indexAction()
       {
         $client = new Zend_Http_Client();
-        $client->setUri('https://app.alegra.com/api/v1/contacts');
-        $client->setAuth('oscar.saavedra163@gmail.com', 'c277ae8c8e5e3c3c6250');
+        $client->setUri(Zend_Registry::get('uri'));
+        $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
         $response = $client->request('GET');
         $this->_helper->json(json_decode($response->getBody()));
       }
@@ -21,8 +21,8 @@ class ClienteController extends Zend_Controller_Action
       {
       	$id = $this->_getParam('id');
         $client = new Zend_Http_Client();
-        $client->setUri('https://app.alegra.com/api/v1/contacts/'.$id);
-        $client->setAuth('oscar.saavedra163@gmail.com', 'c277ae8c8e5e3c3c6250');
+        $client->setUri(Zend_Registry::get('uri')."/".$id);
+        $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
         $response = $client->request('GET');
         $this->_helper->json(json_decode($response->getBody()));
       }
@@ -31,8 +31,8 @@ class ClienteController extends Zend_Controller_Action
       {
       	$json = json_encode('{"name":"Prueba3"}');	
         $client = new Zend_Http_Client();
-        $client->setUri('https://app.alegra.com/api/v1/contacts');
-        $client->setAuth('oscar.saavedra163@gmail.com', 'c277ae8c8e5e3c3c6250');
+        $client->setUri(Zend_Registry::get('uri'));
+        $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
     
         $client->setHeaders('Content-type','application/json');
         $client->setRawData(json_decode($json), null);
@@ -48,8 +48,8 @@ class ClienteController extends Zend_Controller_Action
       	$json = json_encode('{"name":"Prueba3"}');
       	$id = $this->_getParam('id');
         $client = new Zend_Http_Client();
-        $client->setUri('https://app.alegra.com/api/v1/contacts/'.$id);
-        $client->setAuth('oscar.saavedra163@gmail.com', 'c277ae8c8e5e3c3c6250');
+        $client->setUri(Zend_Registry::get('uri')."/".$id);
+        $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
         
 
         $client->setHeaders('Content-type','application/json');
@@ -64,8 +64,8 @@ class ClienteController extends Zend_Controller_Action
       {
         $id = $this->_getParam('id');
         $client = new Zend_Http_Client();
-        $client->setUri('https://app.alegra.com/api/v1/contacts/'.$id);
-        $client->setAuth('oscar.saavedra163@gmail.com', 'c277ae8c8e5e3c3c6250');
+        $client->setUri(Zend_Registry::get('uri')."/".$id);
+        $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
         $client->setHeaders('Content-type','application/json');
 
         $response = $client->request('DELETE');
