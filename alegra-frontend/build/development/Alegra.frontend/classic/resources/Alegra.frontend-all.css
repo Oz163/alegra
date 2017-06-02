@@ -1,2 +1,10 @@
 @import 'Alegra.frontend-all_1.css';
 @import 'Alegra.frontend-all_2.css';
+
+#panel-contenido-central {
+	width: 100%;
+}
+
+body{
+	overflow: scroll;
+}
