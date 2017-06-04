@@ -17,5 +17,10 @@ Ext.define('Alegra.frontend.view.main.MainController', {
         if (choice === 'yes') {
             alert("hola");
         }
-    }
+    },
+
+     onSellClick: function(grid, rowIndex, colIndex) {
+        var rec = grid.getStore().getAt(rowIndex);
+        Ext.Msg.alert('Sell', 'Sell ' + rec.get('name'));
+    },
 });

@@ -13080,6 +13080,15 @@ a.x-color-picker-item:hover {
 .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell {
     border-color: #f2e3b2;
     border-style: solid;
+    background: rgba(0, 177, 156, 0.46);
+}
+
+.x-menu-item-checked .x-menu-item-icon, .x-menu-item-checked .x-menu-item-icon-right{
+    background: none !important;
+}
+
+.x-menu-item-unchecked .x-menu-item-icon, .x-menu-item-unchecked .x-menu-item-icon-right{
+    background: none !important;
 }
 /* C:/xampp/htdocs/gitAlegra/alegra2/alegra-frontend/ext/classic/theme-neutral/sass/src/view/Table.scss:257 */
 .x-rtl.x-grid-with-col-lines .x-grid-cell {
@@ -13345,7 +13354,7 @@ a.x-color-picker-item:hover {
 }
 /* C:/xampp/htdocs/gitAlegra/alegra2/alegra-frontend/ext/classic/theme-neutral/sass/src/grid/column/Action.scss:16 */
 .x-action-col-icon {
-    color: #919191;
+    color: #00b19c;
     font-size: 18px;
     height: 18px;
     width: 18px;
@@ -13364,6 +13373,14 @@ a.x-color-picker-item:hover {
 /* C:/xampp/htdocs/gitAlegra/alegra2/alegra-frontend/ext/classic/theme-neutral/sass/src/grid/column/Check.scss:20 */
 .x-column-header-checkbox .x-column-header-text {
     overflow: visible;
+}
+
+.x-grid-checkcolumn{
+     background: none !important;
+}
+
+.x-grid-row-checker, .x-column-header-checkbox .x-column-header-text{
+    background: none !important;
 }
 /* C:/xampp/htdocs/gitAlegra/alegra2/alegra-frontend/ext/classic/theme-neutral/sass/etc/mixins/font-icon.scss:133 */
 .x-column-header-checkbox .x-column-header-checkbox:after,

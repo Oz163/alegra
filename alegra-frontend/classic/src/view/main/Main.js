@@ -5,6 +5,7 @@
  *
  * TODO - Replace this content of this view to suite the needs of your application.
  */
+    
 
 Ext.define('Alegra.frontend.view.main.Main', {
     extend: 'Ext.panel.Panel',
@@ -30,6 +31,7 @@ Ext.define('Alegra.frontend.view.main.Main', {
             layout: 'column',
             title: 'Ayuda',
             region: 'south',
+            collapsed: true,
             height: 250,
             minHeight: 75,
             maxHeight: 250,
@@ -254,12 +256,15 @@ Ext.define('Alegra.frontend.view.main.Main', {
                 bodyBorder: false,
                 items: [
                     {
-                        title: 'Perfil',
+                        title: 'Contactos',
                         region: 'north',
+                        xtype: 'panel',
                         height: 600,
-                        minHeight: 75,
+                        minHeight: 500,
                         maxHeight: 800,
-                        html: '<p>Perfil content</p>'
+                        width: 600,
+                        id: 'panel-contenido-central',
+                        
                     }
                 ]
             }]
@@ -268,6 +273,102 @@ Ext.define('Alegra.frontend.view.main.Main', {
 
 });
 
+/*
+ var store = Ext.create('Alegra.frontend.store.Contactos', {
+
+    });
+
+Ext.define('Alegra.frontend.view.main.clientes', {
+    extend: 'Ext.grid.Panel',
+    xtype: 'array-grid',
+    requires: [
+        'Ext.grid.column.Action'
+    ],
+
+    title: 'Basic Grid',
+    width: 750,
+    height: 350,
+
+    store: store,
+    stateful: true,
+    collapsible: true,
+    multiSelect: true,
+    stateId: 'stateGrid',
+    headerBorders: false,
+    signTpl: '<span style="' +
+            'color:{value:sign(\'"#cf4c35"\',\'"#73b51e"\')}"' +
+        '>{text}</span>',
+
+    viewConfig: {
+        enableTextSelection: true
+    },
+
+    // Reusable actions
+    actions: {
+        sell: {
+            iconCls: 'array-grid-sell-col',
+            tooltip: 'Sell stock',
+            handler: 'onSellClick'
+        },
+        buy: {
+            getClass: 'getBuyClass',
+            getTip: 'getBuyTip',
+            handler: 'onBuyClick'
+        },
+        suspendTrading: {
+            tooltip: 'Toggles enabled status of all buy and sell actions anywhere in this view',
+            text: 'Suspend Trading',
+            glyph: 'xf256@FontAwesome',
+            toggleHandler: 'onToggleTrading',
+            enableToggle: true
+        }
+    },
+
+    columns: [{
+        text: 'Company',
+        flex: 1,
+        sortable: false,
+        dataIndex: 'name'
+    }, {
+        text: 'Price',
+        width: 95,
+        sortable: true,
+        formatter: 'usMoney',
+        dataIndex: 'price'
+    }, {
+        text: 'Change',
+        width: 80,
+        sortable: true,
+        renderer: 'renderChange',
+        dataIndex: 'change'
+    }, {
+        text: '% Change',
+        width: 100,
+        sortable: true,
+        renderer: 'renderPercent',
+        dataIndex: 'pctChange'
+    }, {
+        text: 'Last Updated',
+        width: 115,
+        sortable: true,
+        formatter: 'date("m/d/Y")',
+        dataIndex: 'lastChange'
+    }, {
+        menuDisabled: true,
+        sortable: false,
+        xtype: 'actioncolumn',
+        width: 50,
+        items: ['@sell', '@buy']
+    }],
+
+    bbar: [
+        '@suspendTrading'
+    ]
+});
+
+Ext.create('Alegra.frontend.view.main.clientes',{
+    renderTo: 'clientes'
+});*/
 
 /*Ext.define('Alegra.frontend.view.main.Main', {
     extend: 'Ext.tab.Panel',
@@ -290,70 +391,126 @@ Ext.define('Alegra.frontend.view.main.Main', {
 });*/
 
 
-/*Ext.onReady(function(){
+Ext.onReady(function(){
 
     var store = Ext.create('Alegra.frontend.store.Contactos', {
 
     });
     
-    var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
-        listeners: {
-            cancelEdit: function(rowEditing, context) {
-                // Canceling editing of a locally added, unsaved record: remove it
-                if (context.record.phantom) {
-                    store.remove(context.record);
-                }
-            }
-        }
-    });
+
     
     var grid = Ext.create('Ext.grid.Panel', {
-        id: 'panel-contenido-central',
-        renderTo: 'sitio',
+        requires: [
+            'Ext.grid.column.Action',
+            'Alegra.frontend.view.main.MainController',
+            'Ext.grid.filters.Filters'
+        ],
+        renderTo: 'panel-contenido-central-innerCt',
+        controller: 'main',
         autoScroll: true,
-        plugins: [rowEditing],
         height: 330,
         frame: false,
-        title: 'Contactos',
+        header: false,
+        loadMask: true,
+        stateful: true,
         store: store,
+        columnLines: true,
+        selType: 'checkboxmodel',
         iconCls: 'icon-user',
+        viewConfig: {
+        enableTextSelection: true,
+        },
+        plugins: 'gridfilters',
+        emptyText: 'No Matching Records',
+        defaultListenerScope: true,
+
+        // Reusable actions
+        actions: {
+            view: {
+                glyph: 'xf06e@FontAwesome',
+                tooltip: 'Ver',
+                handler: 'onSellClick'
+            },
+            edit: {
+                glyph: 'xf040@FontAwesome',
+                tooltip: 'Editar',
+                handler: 'onSellClick'
+            },
+            delete: {
+                glyph: 'xf1f8@FontAwesome',
+                tooltip: 'Eliminar',
+                handler: 'onSellClick',
+            },
+        },
         columns: [{
-            text: 'ID',
-            width: 50,
+            text: 'Nombre',
+            width: 400,
             sortable: true,
-            dataIndex: 'id',
-            renderer: function(v, meta, rec) {
-                return rec.phantom ? '' : v;
-            }
-        }, {
-            text: 'Email',
-            flex: 1,
-            sortable: true,
-            dataIndex: 'email',
+            dataIndex: 'name',
             field: {
                 xtype: 'textfield'
+            },
+            filter: {
+                type: 'string',
+                itemDefaults: {
+                    emptyText: 'Buscar por nombre...'
+                }
             }
         }, {
-            header: 'First',
-            width: 120,
+            header: 'Identificación',
+            width: 200,
             sortable: true,
-            dataIndex: 'first',
+            dataIndex: 'identification',
             field: {
                 xtype: 'textfield'
+            },
+            filter: {
+                type: 'string',
+                itemDefaults: {
+                    emptyText: 'Buscar por Identificación...'
+                }
             }
         }, {
-            text: 'Last',
-            width: 120,
+            text: 'Teléfono 1',
+            width: 200,
             sortable: true,
-            dataIndex: 'last',
+            dataIndex: 'phonePrimary',
             field: {
                 xtype: 'textfield'
+            },
+            filter: {
+                type: 'string',
+                itemDefaults: {
+                    emptyText: 'Buscar por teléfono...'
+                }
             }
+        },{
+            text: 'Observaciones',
+            width: 200,
+            sortable: true,
+            dataIndex: 'observations',
+            field: {
+                xtype: 'textfield'
+            },
+            filter: {
+                type: 'string',
+                itemDefaults: {
+                    emptyText: 'Buscar por observaciones...'
+                }
+            }
+        }, {
+            text: 'Acciones',
+            menuDisabled: true,
+            sortable: false,
+            xtype: 'actioncolumn',
+            width: 150,
+            items: ['@view', '@edit', '@delete']
         }],
         dockedItems: [{
             xtype: 'toolbar',
             items: [{
-                text: 'Add',
+                text: 'Nuevo contacto',
+                width: 200,
                 iconCls: 'icon-add',
                 handler: function(){
                     // empty record
@@ -362,7 +519,8 @@ Ext.define('Alegra.frontend.view.main.Main', {
                 }
             }, '-', {
                 itemId: 'delete',
-                text: 'Delete',
+                text: 'Eliminar',
+                width: 200,
                 iconCls: 'icon-delete',
                 disabled: true,
                 handler: function(){
@@ -377,4 +535,4 @@ Ext.define('Alegra.frontend.view.main.Main', {
     grid.getSelectionModel().on('selectionchange', function(selModel, selections){
         grid.down('#delete').setDisabled(selections.length === 0);
     });
-});*/
+});

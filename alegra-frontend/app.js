@@ -10,6 +10,7 @@ Ext.application({
 
     requires: [
         'Alegra.frontend.view.main.Main'
+
     ],
 
     // The name of the initial view to create. With the classic toolkit this class
