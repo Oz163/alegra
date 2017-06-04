@@ -3,6 +3,8 @@ Ext.define('Alegra.frontend.store.Contactos', {
     autoLoad: true,
     autoSync: true,
     autoDestroy: true,
+    pageSize: 10,
+    remoteSort: true,
 
     alias: 'store.contactos',
 

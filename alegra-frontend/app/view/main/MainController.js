@@ -19,8 +19,32 @@ Ext.define('Alegra.frontend.view.main.MainController', {
         }
     },
 
-     onSellClick: function(grid, rowIndex, colIndex) {
+     onViewClick: function(grid, rowIndex, colIndex) {
         var rec = grid.getStore().getAt(rowIndex);
-        Ext.Msg.alert('Sell', 'Sell ' + rec.get('name'));
+        Ext.Msg.alert('Ver', 'Ver ' + rec.get('name'));
+    },
+
+    onEditClick: function(grid, rowIndex, colIndex) {
+        var rec = grid.getStore().getAt(rowIndex);
+        Ext.Msg.alert('Editar', 'Editar ' + rec.get('name'));
+    },
+
+    onDeleteClick: function(grid, rowIndex, colIndex) {
+        var rec = grid.getStore().getAt(rowIndex);
+        Ext.Msg.alert('Eliminar', 'Eliminar ' + rec.get('name'));
+    },
+
+    onAddClick: function(grid) {;
+        Ext.Msg.alert('Nuevo', 'Nuevo contacto ');
+    },
+
+    onDeleteMultipleClick:function(grid) {;
+        Ext.Msg.alert('Eliminar', 'Eliminación multiple ');
+        /*
+        var selection = grid.getView().getSelectionModel().getSelection()[0];
+                    if (selection) {
+                        store.remove(selection);
+                    }
+        */
     },
 });

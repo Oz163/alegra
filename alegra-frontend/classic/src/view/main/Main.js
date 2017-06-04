@@ -403,7 +403,8 @@ Ext.onReady(function(){
         requires: [
             'Ext.grid.column.Action',
             'Alegra.frontend.view.main.MainController',
-            'Ext.grid.filters.Filters'
+            'Ext.grid.filters.Filters',
+            'Ext.toolbar.Paging',
         ],
         renderTo: 'panel-contenido-central-innerCt',
         controller: 'main',
@@ -422,24 +423,22 @@ Ext.onReady(function(){
         },
         plugins: 'gridfilters',
         emptyText: 'No Matching Records',
-        defaultListenerScope: true,
-
         // Reusable actions
         actions: {
             view: {
                 glyph: 'xf06e@FontAwesome',
                 tooltip: 'Ver',
-                handler: 'onSellClick'
+                handler: 'onViewClick'
             },
             edit: {
                 glyph: 'xf040@FontAwesome',
                 tooltip: 'Editar',
-                handler: 'onSellClick'
+                handler: 'onEditClick'
             },
             delete: {
                 glyph: 'xf1f8@FontAwesome',
                 tooltip: 'Eliminar',
-                handler: 'onSellClick',
+                handler: 'onDeleteClick',
             },
         },
         columns: [{
@@ -512,25 +511,22 @@ Ext.onReady(function(){
                 text: 'Nuevo contacto',
                 width: 200,
                 iconCls: 'icon-add',
-                handler: function(){
-                    // empty record
-                    store.insert(0, new Person());
-                    rowEditing.startEdit(0, 0);
-                }
+                handler: 'onAddClick'
             }, '-', {
                 itemId: 'delete',
                 text: 'Eliminar',
                 width: 200,
                 iconCls: 'icon-delete',
                 disabled: true,
-                handler: function(){
-                    var selection = grid.getView().getSelectionModel().getSelection()[0];
-                    if (selection) {
-                        store.remove(selection);
-                    }
-                }
+                handler: 'onDeleteMultipleClick'
             }]
-        }]
+        }],
+         bbar: {
+            xtype: 'pagingtoolbar',
+            displayInfo: true,
+            displayMsg: 'Mostrando contactos {0} - {1} of {2}',
+            emptyMsg: "No hay contactos para mostrar",
+        }
     });
     grid.getSelectionModel().on('selectionchange', function(selModel, selections){
         grid.down('#delete').setDisabled(selections.length === 0);
