@@ -7,7 +7,11 @@
 Ext.define('Alegra.frontend.view.main.MainController', {
     extend: 'Ext.app.ViewController',
     requires:[
-        'Alegra.frontend.model.Contacto'
+        'Alegra.frontend.model.Contacto',
+        'Alegra.frontend.store.PriceLists',
+        'Alegra.frontend.store.Terms',
+        'Alegra.frontend.store.Sellers'
+
     ],
     alias: 'controller.main',
 
@@ -115,38 +119,43 @@ Ext.define('Alegra.frontend.view.main.MainController', {
                                     xtype: 'combobox',
                                     fieldLabel: 'Lista de Precios',
                                     name: 'priceListId',
-                                    /*store: {
-                                        type: 'states'
+                                    store: {
+                                        type: 'priceLists'
                                     },
-                                    valueField: 'abbr',
-                                    displayField: 'state',*/
+                                    valueField: 'id',
+                                    displayField: 'name',
                                     typeAhead: true,
                                     //queryMode: 'local',
-                                    emptyText: 'Seleccione una lista de precios...'
+                                    emptyText: 'Seleccione una lista de precios...',
+                                    bind: '{contacto.priceList}'
                                 }, {
                                     xtype: 'combobox',
                                     fieldLabel: 'Vendedor',
                                     name: 'sellerId',
-                                    /*store: {
-                                        type: 'states'
+                                    store: {
+                                        type: 'sellers'
                                     },
-                                    valueField: 'abbr',
-                                    displayField: 'state',*/
+                                    valueField: 'id',
+                                    displayField: 'name',
                                     typeAhead: true,
                                     //queryMode: 'local',
-                                    emptyText: 'Seleccione un vendedor...'
+                                    emptyText: 'Seleccione un vendedor...',
+                                    bind: '{contacto.seller}'
                                 }, {
                                     xtype: 'combobox',
                                     fieldLabel: 'Términos de pago',
-                                    name: 'termId',
-                                    /*store: {
-                                        type: 'states'
+                                    name: 'term',
+                                    store: {
+                                        type: 'terms'
                                     },
-                                    valueField: 'abbr',
-                                    displayField: 'state',*/
+                                    valueField: 'id',
+                                    displayField: 'name',
                                     typeAhead: true,
-                                    //queryMode: 'local',
-                                    emptyText: 'Seleccione un término de pago...'
+                                    queryMode: 'local',
+                                    emptyText: 'Seleccione un término de pago...',
+                                    bind: {
+                                        selection: '{contacto.term}'
+                                    }
                                 },{
                                     xtype:'checkbox',
                                     fieldLabel: 'Cliente',
@@ -412,39 +421,42 @@ Ext.define('Alegra.frontend.view.main.MainController', {
                                 items: [{
                                     xtype: 'combobox',
                                     fieldLabel: 'Lista de Precios',
-                                    name: 'priceListId',
-                                    /*store: {
-                                        type: 'states'
+                                    name: 'priceList',
+                                    store: {
+                                        type: 'priceLists'
                                     },
-                                    valueField: 'abbr',
-                                    displayField: 'state',*/
+                                    valueField: 'id',
+                                    displayField: 'name',
                                     typeAhead: true,
                                     //queryMode: 'local',
-                                    emptyText: 'Seleccione una lista de precios...'
+                                    emptyText: 'Seleccione una lista de precios...',
+                                    bind: '{contacto.priceList}'
                                 }, {
                                     xtype: 'combobox',
                                     fieldLabel: 'Vendedor',
-                                    name: 'sellerId',
-                                    /*store: {
-                                        type: 'states'
+                                    name: 'seller',
+                                    store: {
+                                        type: 'sellers'
                                     },
-                                    valueField: 'abbr',
-                                    displayField: 'state',*/
+                                    valueField: 'id',
+                                    displayField: 'name',
                                     typeAhead: true,
                                     //queryMode: 'local',
-                                    emptyText: 'Seleccione un vendedor...'
+                                    emptyText: 'Seleccione un vendedor...',
+                                    bind: '{contacto.seller}'
                                 }, {
                                     xtype: 'combobox',
                                     fieldLabel: 'Términos de pago',
-                                    name: 'termId',
-                                    /*store: {
-                                        type: 'states'
+                                    name: 'term',
+                                    store: {
+                                        type: 'terms'
                                     },
-                                    valueField: 'abbr',
-                                    displayField: 'state',*/
+                                    valueField: 'id',
+                                    displayField: 'name',
                                     typeAhead: true,
-                                    //queryMode: 'local',
-                                    emptyText: 'Seleccione un término de pago...'
+                                    queryMode: 'local',
+                                    emptyText: 'Seleccione un término de pago...',
+                                    bind: '{contacto.term}'
                                 },{
                                     xtype:'checkbox',
                                     fieldLabel: 'Cliente',

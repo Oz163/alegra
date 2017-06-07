@@ -21,9 +21,9 @@ Ext.define('Alegra.frontend.model.Contacto', {
         { name: 'fax', type: 'string' },
         { name: 'mobile', type: 'string' },
         { name: 'observations', type: 'string' },
-        { name: 'priceList', type: 'int', defaultValue: null },
-        { name: 'seller', type: 'int', defaultValue: null },
-        { name: 'term', type: 'int', defaultValue: null },
+        { name: 'priceList', type: 'int', reference: 'Alegra.frontend.model.PriceList', defaultValue: null },
+        { name: 'seller', type: 'int', reference: 'Alegra.frontend.model.Seller', defaultValue: null },
+        { name: 'term', type: 'int', reference: 'Alegra.frontend.model.Term', defaultValue: null },
         { name: 'address', type: 'string' },
         { name: 'type', type: 'int' },
         { name: 'internalContacts', type: 'int' }
