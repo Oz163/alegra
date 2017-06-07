@@ -1,8 +1,18 @@
 Ext.define('Alegra.frontend.model.Contacto', {
     extend: 'Ext.data.Model',
-    
+    proxy: {
+        type: 'rest',
+        url : '../alegra-backend/public/cliente',
+        writer: {
+                type: 'json'
+            },
+        reader: {
+            type: 'json'
+        }
+
+    },
     fields: [
-        { name: 'id', type: 'int' },
+        { name: 'id', type: 'int', persist: false },
         { name: 'name', type: 'string' },
         { name: 'identificacion', type: 'string' },
         { name: 'email', type: 'string' },
@@ -11,10 +21,10 @@ Ext.define('Alegra.frontend.model.Contacto', {
         { name: 'fax', type: 'string' },
         { name: 'mobile', type: 'string' },
         { name: 'observations', type: 'string' },
-        { name: 'priceList', type: 'int' },
-        { name: 'seller', type: 'int' },
-        { name: 'term', type: 'int' },
-        { name: 'address', type: 'int' },
+        { name: 'priceList', type: 'int', defaultValue: null },
+        { name: 'seller', type: 'int', defaultValue: null },
+        { name: 'term', type: 'int', defaultValue: null },
+        { name: 'address', type: 'string' },
         { name: 'type', type: 'int' },
         { name: 'internalContacts', type: 'int' }
 

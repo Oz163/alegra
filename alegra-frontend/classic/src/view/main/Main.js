@@ -406,6 +406,7 @@ Ext.onReady(function(){
             'Ext.grid.filters.Filters',
             'Ext.toolbar.Paging',
         ],
+        id: 'grid-contactos',
         renderTo: 'panel-contenido-central-innerCt',
         controller: 'main',
         autoScroll: true,

@@ -16294,3 +16294,7 @@ div.x-border-layout-ct {
 .btn-navbar .x-btn-wrap-default-small.x-btn-arrow-right:after {
     content: none !important;
 }
+
+.x-form-checkbox{
+    background: none !important;
+}

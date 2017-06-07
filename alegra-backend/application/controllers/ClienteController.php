@@ -29,15 +29,14 @@ class ClienteController extends Zend_Controller_Action
 
       public function postAction()
       {
-      	$json = json_encode('{"name":"Prueba3"}');	
+      	$json = json_encode($this->getRequest()->getRawBody());	
         $client = new Zend_Http_Client();
         $client->setUri(Zend_Registry::get('uri'));
         $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
     
         $client->setHeaders('Content-type','application/json');
         $client->setRawData(json_decode($json), null);
-
-
+        
         $response = $client->request('POST');
 
         $this->_helper->json(json_decode($response->getBody()));
@@ -45,13 +44,13 @@ class ClienteController extends Zend_Controller_Action
 
       public function putAction()
       {
-      	$json = json_encode('{"name":"Prueba3"}');
+      	$json = json_encode($this->getRequest()->getRawBody());
       	$id = $this->_getParam('id');
         $client = new Zend_Http_Client();
         $client->setUri(Zend_Registry::get('uri')."/".$id);
         $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
         
-
+        
         $client->setHeaders('Content-type','application/json');
         $client->setRawData(json_decode($json), null);
 
