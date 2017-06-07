@@ -11,7 +11,7 @@ class ClienteController extends Zend_Controller_Action
       public function indexAction()
       {
         $client = new Zend_Http_Client();
-        $client->setUri(Zend_Registry::get('uri'));
+        $client->setUri(Zend_Registry::get('uri')."/contacts");
         $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
         $response = $client->request('GET');
         $this->_helper->json(json_decode($response->getBody()));
@@ -21,7 +21,7 @@ class ClienteController extends Zend_Controller_Action
       {
       	$id = $this->_getParam('id');
         $client = new Zend_Http_Client();
-        $client->setUri(Zend_Registry::get('uri')."/".$id);
+        $client->setUri(Zend_Registry::get('uri')."/contacts"."/".$id);
         $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
         $response = $client->request('GET');
         $this->_helper->json(json_decode($response->getBody()));
@@ -31,12 +31,12 @@ class ClienteController extends Zend_Controller_Action
       {
       	$json = json_encode($this->getRequest()->getRawBody());	
         $client = new Zend_Http_Client();
-        $client->setUri(Zend_Registry::get('uri'));
+        $client->setUri(Zend_Registry::get('uri')."/contacts");
         $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
     
         $client->setHeaders('Content-type','application/json');
         $client->setRawData(json_decode($json), null);
-        
+
         $response = $client->request('POST');
 
         $this->_helper->json(json_decode($response->getBody()));
@@ -47,7 +47,7 @@ class ClienteController extends Zend_Controller_Action
       	$json = json_encode($this->getRequest()->getRawBody());
       	$id = $this->_getParam('id');
         $client = new Zend_Http_Client();
-        $client->setUri(Zend_Registry::get('uri')."/".$id);
+        $client->setUri(Zend_Registry::get('uri')."/contacts"."/".$id);
         $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
         
         
@@ -63,7 +63,7 @@ class ClienteController extends Zend_Controller_Action
       {
         $id = $this->_getParam('id');
         $client = new Zend_Http_Client();
-        $client->setUri(Zend_Registry::get('uri')."/".$id);
+        $client->setUri(Zend_Registry::get('uri')."/contacts"."/".$id);
         $client->setAuth(Zend_Registry::get('email'), Zend_Registry::get('token'));
         $client->setHeaders('Content-type','application/json');
 

@@ -16,7 +16,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 	   Zend_Registry::set('token', "c277ae8c8e5e3c3c6250");
 
-	   Zend_Registry::set('uri', "https://app.alegra.com/api/v1/contacts");
+	   Zend_Registry::set('uri', "https://app.alegra.com/api/v1");
 	}
 }
 
